@@ -1,0 +1,29 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+}
+
+h1 {
+    color: #333;
+}
+
+canvas {
+    border: 1px solid #000;
+}
+
+button {
+    margin-top: 10px;
+}
+
+p {
+    font-size: 24px;
+    font-weight: bold;
+    margin-top: 20px;
+    color: #007bff;
+}
+
+#prediction {
+    font-size: 18px;
+    font-weight: bold;
+    color: #007bff;
+}
