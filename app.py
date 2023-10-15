@@ -10,9 +10,12 @@ app = Flask(__name__)
 # Load the trained model
 model = joblib.load("mnist_model.pkl")
 
+
 @app.route("/", methods=["GET", "POST"])
 
+# index function
 def index():
+
     prediction = None
 
     if request.method == "POST":
@@ -30,7 +33,9 @@ def index():
         prediction=prediction if prediction is not None else None
     )
 
+
 def preprocess_drawing_data(drawing_data):
+
 
     # Decode the base64 image data and convert it to a NumPy array
     image_data = base64.b64decode(drawing_data)
