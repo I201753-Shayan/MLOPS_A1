@@ -33,7 +33,7 @@ def index():
 
 
 def preprocess_drawing_data(drawing_data):
-    
+
     # Decode the base64 image data and convert it to a NumPy array
     image_data = base64.b64decode(drawing_data)
     image = Image.open(io.BytesIO(image_data))
@@ -46,10 +46,9 @@ def preprocess_drawing_data(drawing_data):
 
     return preprocessed_data
 
-# For locally we use the below
 
 if __name__ == "__main__":
-    
+
     app.run(debug=True)
 
 # For Docker
