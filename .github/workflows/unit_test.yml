@@ -1,7 +1,7 @@
 name: Unit Testing
 
 on:
-  pull_request:
+  push:
     branches:
       - test
 
@@ -19,9 +19,7 @@ jobs:
           python-version: 3.8  # Adjust the Python version as needed
 
       - name: Install Dependencies
-        run: |
-          pip install -r requirements.txt
-
+        run: pip install -r requirements-dev.txt  # Install development dependencies
 
       - name: Run Unit Tests
-        run: pytest tests/test.py  # Adjust the testing command as per your project structure
+        run: pytest tests/
