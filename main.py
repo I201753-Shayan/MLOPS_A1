@@ -1,4 +1,4 @@
 def add(a, b):
     return a + b
 
-# My battery is low
+# Its getting dark
