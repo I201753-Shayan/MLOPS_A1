@@ -11,35 +11,41 @@ app = Flask(__name__)
 model = joblib.load("mnist_model.pkl")
 
 @app.route("/", methods=["GET", "POST"])
+
 def index():
     prediction = None
 
     if request.method == "POST":
         # Get the drawing data from the POST request
         drawing_data = request.form["image"]
-        
+
         # Process and preprocess the drawing data
         preprocessed_data = preprocess_drawing_data(drawing_data)
-        
+
         # Make a prediction using the model
         prediction = model.predict([preprocessed_data])[0]
 
-    return render_template("index.html", prediction=prediction if prediction is not None else None)
+    return render_template(
+        "index.html",
+        prediction=prediction if prediction is not None else None
+    )
 
 def preprocess_drawing_data(drawing_data):
+
     # Decode the base64 image data and convert it to a NumPy array
     image_data = base64.b64decode(drawing_data)
     image = Image.open(io.BytesIO(image_data))
     image = ImageOps.grayscale(image)  # Convert to grayscale
     image = image.resize((28, 28))     # Resize to match the MNIST dataset
     image_array = np.array(image)
-    
+
     # Flatten the 2D image array to a 1D array (784 values)
     preprocessed_data = image_array.reshape(784) / 255.0  # Normalize pixel values
-    
+
     return preprocessed_data
 
 # For locally we use the below 
+
 if __name__ == "__main__":
     app.run(debug=True)
 
